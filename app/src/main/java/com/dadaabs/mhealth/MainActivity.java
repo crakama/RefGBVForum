@@ -14,11 +14,15 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.dadaabs.mhealth.Fragments.GeneralHealth;
+import com.dadaabs.mhealth.Fragments.HygeneTips;
+import com.dadaabs.mhealth.Fragments.MotherCare;
+import com.dadaabs.mhealth.Fragments.TabsFragment;
+
 public class MainActivity extends AppCompatActivity
-//        implements RepatriationRootFrag.OnRepartButtonClickedListener,
-//        LiveNewsFrag.OnHomeTabFragListener, NoticeBoardFrag.OnDashBoardFragListener ,
-//        RepatriationChildFrag.RepatriationChildFragListener
-{
+        implements
+        GeneralHealth.OnHomeTabFragListener, HygeneTips.OnHomeTabFragListener,
+        MotherCare.OnHomeTabFragListener{
 
 
     DrawerLayout drawerLayout;
@@ -58,7 +62,7 @@ public class MainActivity extends AppCompatActivity
             // Add the fragment to the 'container' FrameLayout
             getSupportFragmentManager().beginTransaction()
                     .replace(R.id.container, tabsFragment).commit();
-            initInstances();
+            //initInstances();
         }else {
 
             // However, if we're being restored from a previous state,
@@ -78,7 +82,7 @@ public class MainActivity extends AppCompatActivity
             // Add the fragment to the 'container' FrameLayout
             getSupportFragmentManager().beginTransaction()
                     .replace(R.id.fragment_container, tabsFragment).commit();
-            initInstances();
+            //initInstances();
         }
 
 
@@ -116,173 +120,109 @@ public class MainActivity extends AppCompatActivity
      * CODE FOR NAVIGATION DRAWER
      */
 
-    private void initInstances() {
-        if (getSupportActionBar() != null) {
-            getSupportActionBar().setDisplayShowHomeEnabled(true);
-            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        }
-        drawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout);
-        drawerToggle = new ActionBarDrawerToggle(MainActivity.this, drawerLayout, R.string.welcome, R.string.welcome);
-        drawerLayout.addDrawerListener(drawerToggle);
-
-
-
-        //Initializing NavigationView
-        navigation = (NavigationView) findViewById(R.id.navigation_view);
-
-        //Setting Navigation View Item Selected Listener to handle the item click of the navigation menu
-        navigation.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(MenuItem menuItem) {
-                int id = menuItem.getItemId();
-                switch (id) {
-                    case R.id.navigation_item_1:
-                        //Do some thing here
-                        Intent loginIntent = new Intent(MainActivity.this, LoginActivity.class);
-                        startActivity(loginIntent);
-                        break;
-                    case R.id.navigation_item_5:
-                        //Do some thing here
-                        break;
-
-                    case R.id.navigation_item_3:
-                        //Do some thing here
-                        break;
-                    case R.id.navigation_item_4:
-                        //Do some thing here
-                        break;
+//    private void initInstances() {
+//        if (getSupportActionBar() != null) {
+//            getSupportActionBar().setDisplayShowHomeEnabled(true);
+//            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+//        }
+//        drawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout);
+//        drawerToggle = new ActionBarDrawerToggle(MainActivity.this, drawerLayout, R.string.welcome, R.string.welcome);
+//        drawerLayout.addDrawerListener(drawerToggle);
 //
-                    case R.id.nv_updatenoticeboard:
-                        //Do some thing here
-                        Intent noticeBoardIntent = new Intent(MainActivity.this, UpdateNoticeBoard.class);
-                        startActivity(noticeBoardIntent);
-                        break;
-                    case R.id.navigation_item_8:
-                        //Do some thing here
-                        Intent newsIntent = new Intent(MainActivity.this, UpdateNews.class);
-                        startActivity(newsIntent);
-                        break;
-
-                }
-                return false;
-            }
-        });//end oclick listener
-
-
-
-
-    }
+//
+//
+//        //Initializing NavigationView
+//        navigation = (NavigationView) findViewById(R.id.navigation_view);
+//
+//        //Setting Navigation View Item Selected Listener to handle the item click of the navigation menu
+//        navigation.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+//            @Override
+//            public boolean onNavigationItemSelected(MenuItem menuItem) {
+//                int id = menuItem.getItemId();
+//                switch (id) {
+//                    case R.id.navigation_item_1:
+//                        //Do some thing here
+//                        Intent loginIntent = new Intent(MainActivity.this, LoginActivity.class);
+//                        startActivity(loginIntent);
+//                        break;
+//                    case R.id.navigation_item_5:
+//                        //Do some thing here
+//                        break;
+//
+//                    case R.id.navigation_item_3:
+//                        //Do some thing here
+//                        break;
+//                    case R.id.navigation_item_4:
+//                        //Do some thing here
+//                        break;
+////
+//                    case R.id.nv_updatenoticeboard:
+//                        //Do some thing here
+//                        Intent noticeBoardIntent = new Intent(MainActivity.this, UpdateNoticeBoard.class);
+//                        startActivity(noticeBoardIntent);
+//                        break;
+//                    case R.id.navigation_item_8:
+//                        //Do some thing here
+//                        Intent newsIntent = new Intent(MainActivity.this, UpdateNews.class);
+//                        startActivity(newsIntent);
+//                        break;
+//
+//                }
+//                return false;
+//            }
+//        });//end oclick listener
+//
+//    }
 
     @Override
     public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
         drawerToggle.onConfigurationChanged(newConfig);
     }
+//
+//    @Override
+//    public boolean onCreateOptionsMenu(Menu menu) {
+//        // Inflate the menu; this adds items to the action bar if it is present.
+//        getMenuInflater().inflate(R.menu.menu_main, menu);
+//        return true;
+//    }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        if (drawerToggle.onOptionsItemSelected(item))
-            return true;
-
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        } else if (id == R.id.action_addcamp) {
-            Intent addcampIntent = new Intent(MainActivity.this, UpdateNews.class);
-            startActivity(addcampIntent);
-            return true;
-        }else if(id == R.id.home){
-            onBackPressed();
-            return true;
-
-        }else if(id == R.id.action_helpdesk) {
-            Intent helpdeskIntent = new Intent(MainActivity.this, UpdateTownInfo.class);
-            startActivity(helpdeskIntent);
-            return true;
-//        }else if(id == R.id.action_jobsearch){
-//            Intent intent = new Intent();
-//            intent.setAction(Intent.ACTION_VIEW);
-//            intent.addCategory(Intent.CATEGORY_BROWSABLE);
-//            intent.setData(Uri.parse("https://drc.dk/about-drc/vacancies"));
-//            startActivity(intent);
+//    @Override
+//    public boolean onOptionsItemSelected(MenuItem item) {
+//        if (drawerToggle.onOptionsItemSelected(item))
 //            return true;
-        }
-        return super.onOptionsItemSelected(item);
-    }
+//
+//        // Handle action bar item clicks here. The action bar will
+//        // automatically handle clicks on the Home/Up button, so long
+//        // as you specify a parent activity in AndroidManifest.xml.
+//        int id = item.getItemId();
+//
+//        //noinspection SimplifiableIfStatement
+//        if (id == R.id.action_settings) {
+//            return true;
+//        } else if (id == R.id.action_addcamp) {
+//            Intent addcampIntent = new Intent(MainActivity.this, UpdateNews.class);
+//            startActivity(addcampIntent);
+//            return true;
+//        }else if(id == R.id.home){
+//            onBackPressed();
+//            return true;
+//
+//        }else if(id == R.id.action_helpdesk) {
+//            Intent helpdeskIntent = new Intent(MainActivity.this, UpdateTownInfo.class);
+//            startActivity(helpdeskIntent);
+//            return true;
+//
+//        }
+//        return super.onOptionsItemSelected(item);
+//    }
 
     @Override
     public void onPostCreate(Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
-        drawerToggle.syncState();
+//        drawerToggle.syncState();
     }
 
-    @Override
-    public void onRepartBtnClick(int position) {
-        // The user selected the headline of an article from the HeadlinesFragment
-
-
-        // Capture the RepatriationChildFrag fragment from the activity layout
-
-
-        View fragmentContainer = findViewById(R.id.fragment_container);
-
-        if (fragmentContainer != null) {
-            // If article frag is available, we're in two-pane layout...
-
-            /*
-            *
-            * TO DO: Differenciate display for tablets and phones
-             */
-            RepatriationChildFrag repatriationChildFrag = new RepatriationChildFrag();
-            // Call a method in the ArticleFragment to update its content
-            //repatriationChildFrag.updateArticleView(position);
-            Bundle args = new Bundle();
-            args.putInt(RepatriationChildFrag.ARG_POSITION, position);
-            repatriationChildFrag.setArguments(args);
-            FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-
-            // Replace whatever is in the fragment_container view with this fragment,
-            // and add the transaction to the back stack so the user can navigate back
-            transaction.replace(R.id.fragment_container, repatriationChildFrag);
-            transaction.addToBackStack(null);
-
-            // Commit the transaction
-            transaction.commit();
-
-        } else {
-            // If the frag is not available, we're in the one-pane layout and must swap frags...
-
-            // Create fragment and give it an argument for the selected article
-            RepatriationChildFrag repatriationChildFrag1 = new RepatriationChildFrag();
-            Bundle args = new Bundle();
-            args.putInt(RepatriationChildFrag.ARG_POSITION, position);
-            repatriationChildFrag1.setArguments(args);
-            FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-
-            // Replace whatever is in the fragment_container view with this fragment,
-            // and add the transaction to the back stack so the user can navigate back
-            transaction.replace(R.id.container, repatriationChildFrag1);
-            transaction.addToBackStack(null);
-
-            // Commit the transaction
-            transaction.commit();
-        }
-
-
-
-    }
 
 
 

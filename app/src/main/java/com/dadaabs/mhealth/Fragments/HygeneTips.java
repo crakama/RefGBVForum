@@ -1,53 +1,73 @@
 package com.dadaabs.mhealth.Fragments;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 
+import com.dadaabs.mhealth.Models.GeneralHealthModel;
+import com.dadaabs.mhealth.Models.HygeneTipsModel;
 import com.dadaabs.mhealth.R;
+import com.dadaabs.mhealth.ShowHealthDetails;
+import com.dadaabs.mhealth.ShowHygeneTipsDetails;
+import com.firebase.ui.database.FirebaseRecyclerAdapter;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
-/**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link HygeneTips.OnFragmentInteractionListener} interface
- * to handle interaction events.
- * Use the {@link HygeneTips#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class HygeneTips extends Fragment {
-    // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+    private static final String ARG_POSITION = "position";
+    private int position;
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+    private OnHomeTabFragListener mListener;
+    //private NewsModel newModel = NewsModel.getInstance();
 
-    private OnFragmentInteractionListener mListener;
 
-    public HygeneTips() {
-        // Required empty public constructor
+    // Set grid view items titles and images
+    DatabaseReference dbref;
+    FirebaseRecyclerAdapter<HygeneTipsModel,HygeneTips.HygeneTipsModelVH> firebasenewsRecycleAdapter ;
+    RecyclerView newsrecyclerView;
+    LinearLayoutManager nwlinearLayoutManager;
+    ProgressBar newsprogressBar;
+
+    public static class HygeneTipsModelVH extends RecyclerView.ViewHolder{
+
+        public final TextView newsHead, newsBody;
+        View mView;
+
+        public HygeneTipsModelVH(View itemView) {
+            super(itemView);
+            this.mView = itemView;
+            this.newsHead = (TextView) mView.findViewById(R.id.listview_item_title);
+            this.newsBody = (TextView) mView.findViewById(R.id.listview_item_short_description);
+
+
+
+        }
+
+    }// End NewsModelVH class
+
+    public static final String NEWS= "HygeneTipsModel";
+
+
+
+
+    public HygeneTips() { // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment HygeneTips.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static HygeneTips newInstance(String param1, String param2) {
+    public static HygeneTips newInstance(int position) {
         HygeneTips fragment = new HygeneTips();
         Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
+        args.putInt(ARG_POSITION,position);
         fragment.setArguments(args);
         return fragment;
     }
@@ -56,30 +76,69 @@ public class HygeneTips extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
+            position = getArguments().getInt(ARG_POSITION);
         }
     }
+
+    public void setListener(OnHomeTabFragListener listener){ mListener = listener; }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_hygene_tips, container, false);
+
+        View rootView = inflater.inflate(R.layout.fragment_hygene_tips_rv, container, false);
+        newsrecyclerView =(RecyclerView) rootView.findViewById(R.id.rv_noticeboard);
+        nwlinearLayoutManager = new LinearLayoutManager(getActivity());
+        nwlinearLayoutManager.setStackFromEnd(true);
+
+        dbref = FirebaseDatabase.getInstance().getReference();
+        newsprogressBar = (ProgressBar) rootView.findViewById(R.id.newsprogress_bar);
+        newsprogressBar.setVisibility(View.VISIBLE);
+
+        firebasenewsRecycleAdapter = new FirebaseRecyclerAdapter<HygeneTipsModel, HygeneTipsModelVH>(
+                HygeneTipsModel.class,
+                R.layout.fragment_hygene_tips_cv,
+                HygeneTipsModelVH.class,
+                dbref.child(NEWS)) {
+            //NewsModel dbModel = NewsModel. .getInstance();
+            @Override
+            protected void populateViewHolder(HygeneTipsModelVH viewHolder, final HygeneTipsModel model, final int position) {
+                viewHolder.newsHead.setText(model.getTitle());
+                viewHolder.newsBody.setText(model.getTitleBody());
+                newsprogressBar.setVisibility(View.GONE);
+                viewHolder.mView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        //firebasenewsRecycleAdapter.getRef(position).removeValue();
+                        openNewsDetailActivity(model.getTitle(), model.getTitleBody());
+                    }
+                });
+            }
+
+            private void openNewsDetailActivity(String...details) {
+                Intent newsIntent = new Intent(getActivity(), ShowHygeneTipsDetails.class);
+                newsIntent.putExtra("TTTLE_KEY", details[0]);
+                newsIntent.putExtra("DESC_KEY", details[1]);
+                newsIntent.putExtra("ORG_KEY", details[2]);
+
+                startActivity(newsIntent);
+            }
+        };
+        newsrecyclerView.setLayoutManager(nwlinearLayoutManager);
+        newsrecyclerView.setAdapter(firebasenewsRecycleAdapter);
+
+        return rootView;
+
+
+
     }
 
-    // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(Uri uri) {
-        if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
-        }
-    }
 
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        if (context instanceof OnFragmentInteractionListener) {
-            mListener = (OnFragmentInteractionListener) context;
+        if (context instanceof OnHomeTabFragListener) {
+            mListener = (OnHomeTabFragListener) context;
         } else {
             throw new RuntimeException(context.toString()
                     + " must implement OnFragmentInteractionListener");
@@ -92,18 +151,16 @@ public class HygeneTips extends Fragment {
         mListener = null;
     }
 
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     * <p>
-     * See the Android Training lesson <a href=
-     * "http://developer.android.com/training/basics/fragments/communicating.html"
-     * >Communicating with Other Fragments</a> for more information.
-     */
-    public interface OnFragmentInteractionListener {
+    @Override
+    public void onActivityCreated(Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+
+
+    }
+
+
+    public static interface OnHomeTabFragListener {
         // TODO: Update argument type and name
-        void onFragmentInteraction(Uri uri);
+        void itemClicked(int p,long id);
     }
 }

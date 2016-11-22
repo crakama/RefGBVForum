@@ -3,6 +3,7 @@
     package="com.dadaabs.mhealth">
 
     <application
+        android:name=".Mhealth"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -15,7 +16,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ShowHealthDetails"></activity>
+        <activity android:name=".ShowHealthDetails" />
+        <activity android:name=".ShowHygeneTipsDetails" />
+        <activity android:name=".MotherCareDetails" />
+        <activity android:name=".ViewPagerAdapter"></activity>
     </application>
 
 </manifest>

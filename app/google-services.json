@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "639568914860",
+    "firebase_url": "https://mhealth-8153c.firebaseio.com",
+    "project_id": "mhealth-8153c",
+    "storage_bucket": "mhealth-8153c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:639568914860:android:5d8b4aee85909bfa",
+        "android_client_info": {
+          "package_name": "com.dadaabs.mhealth"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "639568914860-19lo9oqa2672vuh6kdlpekuhmskkbhva.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.dadaabs.mhealth",
+            "certificate_hash": "3BBC2979F6F0D01D7220CD5AB5338A2513DF5F62"
+          }
+        },
+        {
+          "client_id": "639568914860-5omhbo63qdcd3io8dt6ahk60mqr9m2pl.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAi7FBuQKaDDt3zDu1N2zZ4-ZTl89nrYek"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "639568914860-5omhbo63qdcd3io8dt6ahk60mqr9m2pl.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
