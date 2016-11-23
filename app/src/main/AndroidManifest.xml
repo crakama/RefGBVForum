@@ -19,7 +19,10 @@
         <activity android:name=".ShowHealthDetails" />
         <activity android:name=".ShowHygeneTipsDetails" />
         <activity android:name=".MotherCareDetails" />
-        <activity android:name=".ViewPagerAdapter"></activity>
+        <activity android:name=".ViewPagerAdapter" />
+        <activity android:name=".UpdateDatabase.UpdateGeneralHealth" />
+        <activity android:name=".UpdateDatabase.UpdateHygieneTips" />
+        <activity android:name=".UpdateDatabase.UpdateMotherCare"></activity>
     </application>
 
 </manifest>

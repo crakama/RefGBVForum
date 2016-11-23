@@ -18,6 +18,7 @@ import com.dadaabs.mhealth.Fragments.GeneralHealth;
 import com.dadaabs.mhealth.Fragments.HygeneTips;
 import com.dadaabs.mhealth.Fragments.MotherCare;
 import com.dadaabs.mhealth.Fragments.TabsFragment;
+import com.dadaabs.mhealth.UpdateDatabase.UpdateGeneralHealth;
 
 public class MainActivity extends AppCompatActivity
         implements
@@ -217,6 +218,31 @@ public class MainActivity extends AppCompatActivity
 //        return super.onOptionsItemSelected(item);
 //    }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+//        if (drawerToggle.onOptionsItemSelected(item))
+//            return true;
+
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.action_gen_health) {
+            Intent genHealthIntent = new Intent(MainActivity.this, UpdateGeneralHealth.class);
+            startActivity(genHealthIntent);
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
     @Override
     public void onPostCreate(Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);

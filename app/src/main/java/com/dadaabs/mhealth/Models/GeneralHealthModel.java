@@ -30,5 +30,9 @@ public class GeneralHealthModel {
         this.titleBody = titleBody;
     }
 
-    private String title,titleBody;
+    private String title,titleBody,oraganization;
+
+    public void setOraganization(String oraganization) {
+        this.oraganization = oraganization;
+    }
 }
