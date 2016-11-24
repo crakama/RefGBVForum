@@ -40,14 +40,15 @@ public class GeneralHealth extends Fragment {
 
     public static class GeneralHealthModelVH extends RecyclerView.ViewHolder{
 
-        public final TextView newsHead, newsBody;
+        public final TextView newsHead, newsBody,org;
         View mView;
 
         public GeneralHealthModelVH(View itemView) {
             super(itemView);
             this.mView = itemView;
-            this.newsHead = (TextView) mView.findViewById(R.id.listview_item_title);
-            this.newsBody = (TextView) mView.findViewById(R.id.listview_item_short_description);
+            this.newsHead = (TextView) mView.findViewById(R.id.lv_title);
+            this.newsBody = (TextView) mView.findViewById(R.id.lv_description);
+            this.org = (TextView) mView.findViewById(R.id.lvorganization);
 
 
 
@@ -104,6 +105,7 @@ public class GeneralHealth extends Fragment {
             protected void populateViewHolder(GeneralHealthModelVH viewHolder, final GeneralHealthModel model, final int position) {
                 viewHolder.newsHead.setText(model.getTitle());
                 viewHolder.newsBody.setText(model.getTitleBody());
+                viewHolder.org.setText(model.getOraganization());
                 newsprogressBar.setVisibility(View.GONE);
                 viewHolder.mView.setOnClickListener(new View.OnClickListener() {
                     @Override

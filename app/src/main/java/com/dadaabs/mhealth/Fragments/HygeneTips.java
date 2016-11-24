@@ -47,8 +47,8 @@ public class HygeneTips extends Fragment {
         public HygeneTipsModelVH(View itemView) {
             super(itemView);
             this.mView = itemView;
-            this.newsHead = (TextView) mView.findViewById(R.id.listview_item_title);
-            this.newsBody = (TextView) mView.findViewById(R.id.listview_item_short_description);
+            this.newsHead = (TextView) mView.findViewById(R.id.lv_title);
+            this.newsBody = (TextView) mView.findViewById(R.id.lv_description);
 
 
 
