@@ -105,7 +105,7 @@ public class GeneralHealth extends Fragment {
             protected void populateViewHolder(GeneralHealthModelVH viewHolder, final GeneralHealthModel model, final int position) {
                 viewHolder.newsHead.setText(model.getTitle());
                 viewHolder.newsBody.setText(model.getTitleBody());
-                viewHolder.org.setText(model.getOraganization());
+                //viewHolder.org.setText(model.getOraganization());
                 newsprogressBar.setVisibility(View.GONE);
                 viewHolder.mView.setOnClickListener(new View.OnClickListener() {
                     @Override

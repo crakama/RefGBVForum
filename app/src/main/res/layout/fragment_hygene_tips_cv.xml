@@ -13,7 +13,7 @@
         card_view:cardElevation="5dp"
         android:layout_margin="3dp"
         android:layout_width="match_parent"
-        android:layout_height="100dp"
+        android:layout_height="150dp"
         card_view:cardCornerRadius="2dp"
         android:background="#ddd"
         card_view:contentPadding="2dp"
@@ -42,32 +42,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
-                android:lines="6"
+                android:maxLines="6"
+                android:maxLength="100"
+                android:ellipsize="end"
                 android:layout_marginTop="40dp"
                 android:layout_marginBottom="30dp"
                 />
 
 
-            <TextView
-                android:id="@+id/lvorganization"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-
-                android:textAppearance="?android:attr/textAppearanceSmall"
-                android:textStyle="bold|italic"
-                android:paddingLeft="5dp"
-                android:layout_alignParentBottom="true"
-                android:layout_alignParentLeft="true" />
-
-            <TextView
-                android:id="@+id/lv_item_separator"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="||"
-                android:textAppearance="?android:attr/textAppearanceSmall"
-                android:textStyle="bold|italic"
-                android:layout_alignParentBottom="true"
-                android:layout_toRightOf="@+id/lvorganization" />
 
 
             <TextView
@@ -78,18 +60,18 @@
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:textStyle="bold|italic"
                 android:layout_alignParentBottom="true"
-                android:layout_toRightOf="@+id/lv_item_separator" />
+                 />
             <Button
                 android:id="@+id/read_more"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
 
                 android:background="@null"
-                android:text="read_more"
+                android:text="READ MORE"
                 android:textStyle="italic"
                 android:textColor="@color/colorAccent"
                 android:layout_alignParentRight="true"
-                android:textAllCaps="false"
+                android:textAllCaps="true"
                 android:layout_alignParentBottom="true" />
             <!--android:layout_marginTop="16dp"-->
 

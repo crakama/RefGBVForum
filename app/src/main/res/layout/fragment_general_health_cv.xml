@@ -73,7 +73,7 @@
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:textStyle="bold|italic"
                 android:layout_alignParentBottom="true"
-                android:layout_toRightOf="@+id/lv_item_separator" />
+                 />
             <Button
                 android:id="@+id/read_more"
                 android:layout_width="wrap_content"

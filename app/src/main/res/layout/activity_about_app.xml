@@ -17,6 +17,7 @@
 
         <TextView
             android:id="@+id/lv_title"
+            android:text="About App"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
@@ -28,6 +29,12 @@
 
         <TextView
             android:id="@+id/lv_description"
+            android:text=" Mhealth mobile app was built to help dissiminate information concerning health, to diffrent communities at the camps
+
+ This information is categorized into four modules:\n
+  1. General Health, Provides Information about general health\n
+  2. Mother Care, that provides advices and safety tips for expectant mothers\n
+  3. General Hygiene, Provides Information about general health\n"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="72dp"

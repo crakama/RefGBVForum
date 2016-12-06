@@ -21,7 +21,6 @@
     android:layout_alignParentLeft="true"
     android:layout_alignParentTop="true"
     android:padding="10dp"
-
     android:textStyle="bold|italic"
     android:textAppearance="?android:attr/textAppearanceMedium"
     />

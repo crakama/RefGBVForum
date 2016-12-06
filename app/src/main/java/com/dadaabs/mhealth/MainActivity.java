@@ -237,7 +237,7 @@ public class MainActivity extends AppCompatActivity
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_gen_health) {
-            Intent genHealthIntent = new Intent(MainActivity.this, UpdateGeneralHealth.class);
+            Intent genHealthIntent = new Intent(MainActivity.this, AboutApp.class);
             startActivity(genHealthIntent);
             return true;
         }
