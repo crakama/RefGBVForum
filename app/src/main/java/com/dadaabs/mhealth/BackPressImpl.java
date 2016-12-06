@@ -3,9 +3,7 @@ package com.dadaabs.mhealth;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 
-/**
- * Created by crakama on 11/22/2016.
- */
+/*** Created by crakama on 11/22/2016. */
 
 public class BackPressImpl implements OnBackPressListener{
 

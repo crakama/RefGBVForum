@@ -120,7 +120,7 @@ public class GeneralHealth extends Fragment {
                 Intent newsIntent = new Intent(getActivity(), ShowHealthDetails.class);
                 newsIntent.putExtra("TTTLE_KEY", details[0]);
                 newsIntent.putExtra("DESC_KEY", details[1]);
-                newsIntent.putExtra("ORG_KEY", details[2]);
+//                newsIntent.putExtra("ORG_KEY", details[2]);
 
                 startActivity(newsIntent);
             }
